@@ -174,7 +174,7 @@ class AuthChecker
         $limit = Carbon::now()->subMinutes($throttle);
         $login = $device->login;
 
-        if (isset($login->created_at) && $login->created_at->gt($limit)) {
+        if (isset($login->created_at) && $login->created_at->gt($limit) && $login['type'] == Login::TYPE_LOGIN) {
             return false;
         }
 
